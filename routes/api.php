@@ -17,3 +17,4 @@ Route::post('/quote', ['uses' => 'QuoteController@postQuote']);
 Route::get('/quotes', ['uses' => 'QuoteController@getQuotes']);
 Route::put('/quote/{id}', ['uses' => 'QuoteController@putQuote']);
 Route::delete('/quote/{id}', ['uses' => 'QuoteController@deleteQuote']);
+Route::post('/user', ['uses' => 'UserController@signup']);

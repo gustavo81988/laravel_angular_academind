@@ -18,3 +18,15 @@ Route::get('/quotes', ['uses' => 'QuoteController@getQuotes']);
 Route::put('/quote/{id}', ['uses' => 'QuoteController@putQuote']);
 Route::delete('/quote/{id}', ['uses' => 'QuoteController@deleteQuote']);
 Route::post('/user', ['uses' => 'UserController@signup']);
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
+});

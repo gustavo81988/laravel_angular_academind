@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Quote;
+use JWTAuth;
 
 class QuoteController
 {
@@ -17,10 +18,18 @@ class QuoteController
 
     public function getQuotes()
     {
-        $quotes = Quote::all();
-        $response = [
-            'quotes' => $quotes
-        ];
+        try {
+            if(! $user = JWTAuth::parseToken()->authenticate() ){
+                return response()->json(['message' => 'User not found'], 404);
+            }
+
+            $quotes = Quote::all();
+            $response = [
+                'quotes' => $quotes
+            ];
+        } catch (\Exception $e) {
+            return [ 'error' => $e->getMessage()];
+        }
         return response()->json($response, 200);
     }
 

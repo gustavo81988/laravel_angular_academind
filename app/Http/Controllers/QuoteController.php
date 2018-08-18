@@ -18,18 +18,11 @@ class QuoteController
 
     public function getQuotes()
     {
-        try {
-            if(! $user = JWTAuth::parseToken()->authenticate() ){
-                return response()->json(['message' => 'User not found'], 404);
-            }
+        $quotes = Quote::all();
+        $response = [
+            'quotes' => $quotes
+        ];
 
-            $quotes = Quote::all();
-            $response = [
-                'quotes' => $quotes
-            ];
-        } catch (\Exception $e) {
-            return [ 'error' => $e->getMessage()];
-        }
         return response()->json($response, 200);
     }
 

@@ -21,6 +21,9 @@ Route::get('/quotes', [
 Route::put('/quote/{id}', ['uses' => 'QuoteController@putQuote']);
 Route::delete('/quote/{id}', ['uses' => 'QuoteController@deleteQuote']);
 Route::post('/user', ['uses' => 'UserController@signup']);
+Route::post('/user/signin', [
+    'uses' => 'UserController@signin'
+]);
 
 Route::group([
     'middleware' => 'api',

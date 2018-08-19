@@ -16,13 +16,23 @@ use Illuminate\Http\Request;
 Route::post('/quote', ['uses' => 'QuoteController@postQuote']);
 Route::get('/quotes', [
     'uses'       => 'QuoteController@getQuotes',
-    'middleware' => 'jwt',
+    'middleware' => 'jwt'
 ]);
-Route::put('/quote/{id}', ['uses' => 'QuoteController@putQuote']);
-Route::delete('/quote/{id}', ['uses' => 'QuoteController@deleteQuote']);
-Route::post('/user', ['uses' => 'UserController@signup']);
+Route::put('/quote/{id}', [
+    'uses' => 'QuoteController@putQuote',
+    'middleware' => 'jwt'
+]);
+Route::delete('/quote/{id}', [
+    'uses' => 'QuoteController@deleteQuote',
+    'middleware' => 'jwt'
+]);
+Route::post('/user', [
+    'uses' => 'UserController@signup',
+    'middleware' => 'jwt'
+]);
 Route::post('/user/signin', [
-    'uses' => 'UserController@signin'
+    'uses' => 'UserController@signin',
+    'middleware' => 'jwt'
 ]);
 
 Route::group([

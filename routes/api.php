@@ -27,12 +27,10 @@ Route::delete('/quote/{id}', [
     'middleware' => 'jwt'
 ]);
 Route::post('/user', [
-    'uses' => 'UserController@signup',
-    'middleware' => 'jwt'
+    'uses' => 'UserController@signup'
 ]);
 Route::post('/user/signin', [
-    'uses' => 'UserController@signin',
-    'middleware' => 'jwt'
+    'uses' => 'UserController@signin'
 ]);
 
 Route::group([
